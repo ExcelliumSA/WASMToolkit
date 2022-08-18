@@ -124,6 +124,28 @@ class memoryWrapper {
         this.write8bitsUnsigned(address + i, 0);
     }
 
+    readBytes(address, length) {
+        ///*
+        // Returns an array of values representing the bytes at the *address* memory address.
+        // The function reads exactly *length* bytes
+        ///*
+        var result = [];
+        for (var i = 0; i < length; i++) {
+            result.push(this.read8bitsUnsigned(address + i));
+        }
+        return result;
+    }
+
+    writeBytes(address, values) {
+        ///*
+        // Write the *values* bytes in the memory buffer starting at the *address* memory address.
+        // The *values* argument must be an array of bytes (int < 255).
+        ///*
+        for (var i = 0; i < values.length; i++) {
+            this.write8bitsUnsigned(address + i, values[i])
+        }
+    }
+
     search32bitsUnsigned(value) {
         ///*
         // Returns a list of memory addresses where the 32 bits unsigned value *value* is present in the memory buffer.
